@@ -5,16 +5,259 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GabonLearn - Présentation de l'Organisation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Reset basique pour cohérence */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa;
+            color: #003f87;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar pro avec logo top left */
+        .navbar {
+            background-color: #003f87;
+            box-shadow: 0 4px 12px rgba(0, 63, 135, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar:hover {
+            background-color: #002a5a;
+        }
+
+        .logo {
+            max-width: 180px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #28a745 !important;
+        }
+
+        /* Splash Screen wow (full screen intro) */
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #003f87 0%, #28a745 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #splash .splash-content {
+            text-align: center;
+            color: white;
+        }
+
+        #splash .logo {
+            max-width: 300px;
+            animation: zoomIn 1.5s ease-in-out;
+        }
+
+        #splash h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #splash p {
+            font-size: 1.5rem;
+        }
+
+        /* Hero section après splash */
+        #hero {
+            background: linear-gradient(135deg, #003f87 0%, #28a745 100%);
+            color: white;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+            background-attachment: fixed;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            animation: slideInRight 1s ease-in-out;
+        }
+
+        .hero .btn {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .hero .btn:hover {
+            transform: scale(1.05);
+            background-color: #28a745 !important;
+            border-color: #28a745 !important;
+        }
+
+        /* Sections avec animations */
+        .section {
+            padding: 80px 20px;
+            opacity: 0;
+            animation: fadeInSection 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        /* Cards pro avec hover 3D */
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 160, 227, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 12px 30px rgba(0, 160, 227, 0.3);
+        }
+
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-img-top {
+            transform: scale(1.1);
+        }
+
+        /* Stats stylés */
+        .stats li {
+            font-size: 1.5em;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .stats li::before {
+            content: '\f058';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-size: 1.8em;
+        }
+
+        /* List docs avec hover */
+        .list-group-item {
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .list-group-item:hover {
+            background-color: #e6f7ff;
+        }
+
+        /* Form contact glow */
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        }
+
+        /* Footer gradient */
+        .footer {
+            background: linear-gradient(to top, #003f87, #002a5a);
+            color: white;
+            padding: 40px 20px;
+            box-shadow: 0 -4px 12px rgba(0, 63, 135, 0.2);
+        }
+
+        /* Animations clés */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeInSection {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            #hero h1 { font-size: 2rem; }
+            #hero p { font-size: 1.2rem; }
+            .section { padding: 50px 10px; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navbar -->
+    <!-- Splash Screen Pro avec Logo -->
+    <div id="splash">
+        <div class="splash-content">
+            <img src="logo.png" alt="Logo GabonLearn" class="logo">
+            <h1>Bienvenue sur GabonLearn</h1>
+            <p>Chargement de l'innovation éducative et business au Gabon...</p>
+        </div>
+    </div>
+
+    <!-- Navbar avec Logo top left -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="#"><img src="images/gabon_2.png" alt="Logo GabonLearn" class="logo"></a>
+            <a class="navbar-brand" href="#"><img src="logo.png" alt="Logo GabonLearn" class="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,17 +269,17 @@
                     <li class="nav-item"><a class="nav-link" href="#business">Business</a></li>
                     <li class="nav-item"><a class="nav-link" href="#docs">Documents</a></li>
                     <li class="nav-item"><a class="nav-link" href="#actualites">Actualités</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#apropos">À propos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Équipe</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Splash / Hero Section -->
+    <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="container text-center">
-            <img src="images/logo.png" alt="Logo GabonLearn" class="logo mb-4">
             <h1># Faisons Avancer l'Éducation et le Business au Gabon</h1>
             <p>Solutions innovantes pour écoles et entreprises, créées par David Bodonga Cletus.</p>
             <a href="#scolaire" class="btn btn-light btn-lg me-2">Découvrir Scolaire</a>
@@ -44,14 +287,14 @@
         </div>
     </section>
 
-    <!-- Section Stats / Impact -->
-    <section id="stats" class="section bg-light">
-        <div class="container text-center">
+    <!-- Section Impact / Stats -->
+    <section id="stats" class="section bg-light text-center">
+        <div class="container">
             <h2>Notre Impact</h2>
             <ul class="stats list-unstyled">
-                <li><strong>1 million</strong> d'utilisateurs ciblés au Gabon</li>
-                <li><strong>100%</strong> adapté aux programmes nationaux</li>
-                <li><strong>Premier</strong> au Gabon pour l'éducation numérique</li>
+                <li>1 million d'utilisateurs ciblés au Gabon</li>
+                <li>100% adapté aux programmes nationaux</li>
+                <li>Premier au Gabon pour l'éducation numérique</li>
             </ul>
         </div>
     </section>
@@ -65,8 +308,8 @@
                     <div class="card">
                         <img src="https://www.unicef.org/gabon/sites/unicef.org.gabon/files/styles/media_large_image/public/F89A2278_1.jpg.webp?itok=Aupg8tsm" class="card-img-top" alt="Éducation au Gabon">
                         <div class="card-body">
-                            <h5>GabonEDT</h5>
-                            <p>Outils pour emplois du temps.</p>
+                            <h5 class="card-title">GabonEDT</h5>
+                            <p>Outils pour emplois du temps adaptés aux écoles gabonaises.</p>
                         </div>
                     </div>
                 </div>
@@ -74,8 +317,8 @@
                     <div class="card">
                         <img src="https://www.unicef.org/gabon/sites/unicef.org.gabon/files/styles/hero_extended/public/142A1918.JPG.webp?itok=1t5uEir_" class="card-img-top" alt="Apprentissage numérique">
                         <div class="card-body">
-                            <h5>GabonPRONOTE</h5>
-                            <p>Gestion notes et absences.</p>
+                            <h5 class="card-title">GabonPRONOTE</h5>
+                            <p>Gestion des notes, absences et communication parents-enseignants.</p>
                         </div>
                     </div>
                 </div>
@@ -83,8 +326,8 @@
                     <div class="card">
                         <img src="https://images.squarespace-cdn.com/content/v1/6326a94b83232c7792848111/0b316e68-7586-464c-a537-8094dc3d6535/iStock-803149430.jpg" class="card-img-top" alt="Classe au Gabon">
                         <div class="card-body">
-                            <h5>GabonPLAN</h5>
-                            <p>Planification supérieure.</p>
+                            <h5 class="card-title">GabonPLAN</h5>
+                            <p>Planification pour l'enseignement supérieur et formations avancées.</p>
                         </div>
                     </div>
                 </div>
@@ -101,8 +344,8 @@
                     <div class="card">
                         <img src="https://www.afdb.org/sites/default/files/styles/1700x900/public/1500-pr-commission-de-la-cedeao-afdb-en.jpg?itok=ogSy1oVr" class="card-img-top" alt="Réunion business Gabon">
                         <div class="card-body">
-                            <h5>GabonTrain</h5>
-                            <p>Formation professionnelle.</p>
+                            <h5 class="card-title">GabonTrain</h5>
+                            <p>Plateforme de formation professionnelle pour entreprises.</p>
                         </div>
                     </div>
                 </div>
@@ -110,8 +353,8 @@
                     <div class="card">
                         <img src="https://www.afdb.org/sites/default/files/cp-dsp-gabon-1.jpg" class="card-img-top" alt="Partenariat Gabon">
                         <div class="card-body">
-                            <h5>GabonBiz</h5>
-                            <p>Outils de gestion.</p>
+                            <h5 class="card-title">GabonBiz</h5>
+                            <p>Outils de gestion et planification business adaptés.</p>
                         </div>
                     </div>
                 </div>
@@ -119,8 +362,8 @@
                     <div class="card">
                         <img src="https://www.comcec.org/wp-content/uploads/2021/11/Rencontre-bilaterale-avec-le-ministre-du-Commerce-du-Gabon.jpg" class="card-img-top" alt="Commerce Gabon">
                         <div class="card-body">
-                            <h5>GabonAdapt</h5>
-                            <p>Apprentissage adaptatif.</p>
+                            <h5 class="card-title">GabonAdapt</h5>
+                            <p>Apprentissage adaptatif pour le développement des compétences.</p>
                         </div>
                     </div>
                 </div>
@@ -133,10 +376,10 @@
         <div class="container">
             <h2>Documents et Ressources</h2>
             <ul class="list-group">
-                <li class="list-group-item"><a href="docs/brochure_scolaire.pdf" target="_blank"><i class="bi bi-file-pdf"></i> Brochure Scolaire</a></li>
-                <li class="list-group-item"><a href="docs/brochure_business.pdf" target="_blank"><i class="bi bi-file-pdf"></i> Brochure Business</a></li>
-                <li class="list-group-item"><a href="docs/communique_presse.pdf" target="_blank"><i class="bi bi-file-pdf"></i> Communiqué de Presse</a></li>
-                <li class="list-group-item"><a href="docs/guide_utilisation.pdf" target="_blank"><i class="bi bi-file-pdf"></i> Guide d'Utilisation</a></li>
+                <li class="list-group-item"><a href="#"><i class="bi bi-file-pdf"></i> Brochure Scolaire</a></li>
+                <li class="list-group-item"><a href="#"><i class="bi bi-file-pdf"></i> Brochure Business</a></li>
+                <li class="list-group-item"><a href="#"><i class="bi bi-file-pdf"></i> Communiqué de Presse</a></li>
+                <li class="list-group-item"><a href="#"><i class="bi bi-file-pdf"></i> Guide d'Utilisation</a></li>
             </ul>
         </div>
     </section>
@@ -145,26 +388,70 @@
     <section id="actualites" class="section bg-light">
         <div class="container">
             <h2>Actualités</h2>
-            <div class="alert alert-info">
-                <h4>Flash Spécial : Lancement de GabonTrain !</h4>
-                <p>Une plateforme pour booster les compétences au Gabon. <a href="docs/communique_presse.pdf" target="_blank">Voir le PDF</a>.</p>
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Flash Spécial : Lancement de GabonTrain !</h4>
+                <p>Une nouvelle plateforme pour booster les compétences business au Gabon.</p>
             </div>
         </div>
     </section>
 
-    <!-- Section À propos -->
-    <section id="apropos" class="section">
+    <!-- Section Équipe (Ajout pro) -->
+    <section id="team" class="section">
+        <div class="container text-center">
+            <h2>Notre Équipe</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://via.placeholder.com/300x300?text=David+Bodonga+Cletus" class="card-img-top" alt="David Bodonga Cletus">
+                        <div class="card-body">
+                            <h5 class="card-title">David Bodonga Cletus</h5>
+                            <p>Fondateur & CEO</p>
+                            <p>Visionnaire de l'éducation et du business au Gabon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section FAQ (Ajout pro) -->
+    <section id="faq" class="section bg-light">
         <div class="container">
-            <h2>À propos de GabonLearn</h2>
-            <p>Créée par David Bodonga Cletus, GabonLearn est dédiée à l'avancement de l'éducation et du business au Gabon via des outils numériques adaptés.</p>
+            <h2>FAQ</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                            Qu'est-ce que GabonLearn ?
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            GabonLearn est une organisation dédiée à l'éducation et au business au Gabon, créée par David Bodonga Cletus.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="faq2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                            Comment contacter l'équipe ?
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Via email à contact@gabonlearn.ga ou par le formulaire de contact.
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Section Contact -->
-    <section id="contact" class="section bg-light">
+    <section id="contact" class="section">
         <div class="container">
             <h2>Contactez-nous</h2>
-            <p>Email : contact@gabonlearn.ga | Téléphone : +241 05 73 01 23</p>
+            <p>Email : contact@gabonlearn.ga | Téléphone : +241 XX XX XX XX</p>
             <form>
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom</label>
@@ -186,11 +473,27 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container text-center">
-            <p>&copy; 2025 GabonLearn. Tous droits réservés.</p>
+            <p>&copy; 2025 GabonLearn. Tous droits réservés. Créé par David Bodonga Cletus.</p>
+            <p><a href="#" class="text-white">Politique de Confidentialité</a> | <a href="#" class="text-white">Conditions d'Utilisation</a></p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script>
+        // Masquer le splash après 3 secondes
+        setTimeout(function() {
+            document.getElementById('splash').style.display = 'none';
+        }, 3000);
+
+        // Smooth scroll pour liens
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
