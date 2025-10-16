@@ -1,0 +1,228 @@
+/* Reset basique pour cohérence */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonts pour un look pro et wow */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f9fa;
+    color: #003f87;
+    line-height: 1.6;
+    overflow-x: hidden; /* Pour éviter débordements */
+}
+
+/* Navbar avec ombre et transition */
+.navbar {
+    background-color: #003f87;
+    box-shadow: 0 4px 12px rgba(0, 63, 135, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.navbar:hover {
+    background-color: #002a5a; /* Bleu plus foncé sur hover */
+}
+
+.logo {
+    max-width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1); /* Effet zoom wow */
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #28a745 !important; /* Vert pour accent gabonais */
+}
+
+/* Hero / Splash avec parallax et animations wow */
+.hero {
+    background: linear-gradient(135deg, #003f87 0%, #28a745 100%);
+    color: white;
+    padding: 150px 20px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.5s ease-in-out;
+    background-attachment: fixed; /* Effet parallax léger */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: slideInLeft 1s ease-in-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: slideInRight 1s ease-in-out;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.hero .btn {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.hero .btn:hover {
+    transform: scale(1.05);
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+/* Sections générales avec fade-in */
+.section {
+    padding: 80px 20px; /* Plus d'espace pour wow */
+    opacity: 0;
+    animation: fadeInSection 1s forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeInSection {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Cards avec hover wow (3D effect) */
+.card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 160, 227, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) rotate(2deg); /* Effet 3D wow */
+    box-shadow: 0 12px 30px rgba(0, 160, 227, 0.3);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.1); /* Zoom image sur hover */
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #003f87;
+}
+
+/* Stats avec icônes et couleurs */
+.stats li {
+    font-size: 1.5em;
+    margin: 20px 0;
+    position: relative;
+    padding-left: 40px;
+}
+
+.stats li::before {
+    content: '\f058'; /* Icône check from Font Awesome, mais comme on a Bootstrap icons, adapte */
+    font-family: 'bootstrap-icons';
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-size: 1.8em;
+}
+
+/* List-group pour docs avec hover */
+.list-group-item {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: #e6f7ff;
+}
+
+/* Alert pour actualités avec animation */
+.alert {
+    animation: bounceIn 1s ease-in-out;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.9); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* Form contact avec focus wow */
+.form-control {
+    border-radius: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5); /* Glow vert wow */
+}
+
+/* Footer avec gradient */
+.footer {
+    background: linear-gradient(to top, #003f87, #002a5a);
+    color: white;
+    padding: 40px 20px;
+    box-shadow: 0 -4px 12px rgba(0, 63, 135, 0.2);
+}
+
+/* Responsive pour mobile wow */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    .hero p { font-size: 1.2rem; }
+    .section { padding: 50px 10px; }
+    .row { flex-direction: column; } /* Stack cards verticalement */
+}
